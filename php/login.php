@@ -28,7 +28,6 @@ require_once 'config/config.php';
               } elseif ($pwd == $row['password']) {
                 session_start();
                 $_SESSION['id']= $row['employee_id'];
-                $_SESSION['adminid']= $row['admin_id'];
                 $_SESSION['usn']= $row['username'];
                 $_SESSION['fname']= $row['first_name'];
                 $_SESSION['lname']= $row['last_name'];

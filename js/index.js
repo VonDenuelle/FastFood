@@ -53,7 +53,6 @@ $(document).ready(function() {
       '<h4 id="error"></h4><input type="submit" class="btn"></input></form>')
   });//end register
 
-
   // ===============================================
   // AJAX Register
     $('.form').on('submit', '#registerAjax', function(e) {
@@ -128,6 +127,48 @@ $('.form').on('submit', '#loginAjax', function(e) {
             break;
           case 'success':
             window.location.replace('pos');
+            console.log(data);
+            break;
+        }
+      });
+    })
+    .fail(function(xhr) {
+      console.log("error" + xhr.responseText + xhr.status);
+    });
+});
+
+
+// ================================================
+// ADMIN AJAX
+$('.form').on('submit', '#adminAjax', function(e) {
+  e.preventDefault();
+
+  $.ajax({
+      url: 'php/admin.php',
+      method: 'POST',
+      dataType: 'JSON',
+      data: {
+        usn: $("#usnA").val(),
+        pwd: $("#pwdA").val()
+      },
+    })
+    .done(function(data) {
+      $.map(data, function(val, index) {
+        switch (index) {
+          case 'emptyfields':
+            $('#modal-error').text(val);
+            break;
+          case 'passwordnotmatch':
+            $('#modal-error').text(val);
+            break;
+          case 'nouser':
+            $('#modal-error').text(val);
+            break;
+          case 'connerror':
+            $('#modal-error').text(val);
+            break;
+          case 'success':
+            window.location.replace('admin-panel');
             console.log(data);
             break;
         }

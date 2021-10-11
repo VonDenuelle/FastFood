@@ -5,6 +5,10 @@ session_start();
 if (isset($_SESSION['id'])) {
   header("Location: /FastFood/pos");
 }
+//checks if admin is  logged in
+if (isset($_SESSION['adminid'])) {
+  header("Location: /FastFood/admin-panel");
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +35,9 @@ if (isset($_SESSION['id'])) {
             <p>Banana so Big, so Good..., Fast Food System For All</p>
           </div>
         </div>
+
         <div class="float-right-white">
+
           <div class="box-choice">
             <h3 id="login">Login</h3>
             <h3 id="register">Register</h3>
@@ -52,10 +58,39 @@ if (isset($_SESSION['id'])) {
                 <input type="submit" class="btn"></input>
             </form>
           </div>
-        </div>
-      </div>
 
+          <div class="button_cont"><a class="example_f" href="#modal" >
+            <span>Admin</a></div>
+
+        </div>
+      </div> <!--end float-->
+
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+    <div class="modal__content">
+        <h1>Admin Login</h1>
+        <br>
+        <div class="form">
+          <form id="adminAjax">
+            <div class="input-container">
+              <input id="usnA" type="text"  required/>
+              <label>Username</label>
+            </div>
+            <div class="input-container">
+              <input id="pwdA" type="password" required />
+              <label>Password</label>
+            </div>
+            <h4 id="modal-error"></h4>
+              <input type="submit" class="btn"></input>
+          </form>
+        </div>
+        <a href="#" class="modal__close">&times;</a>
     </div>
+</div>
+
+
+    </div> <!-- end container-->
 
   </body>
 </html>
